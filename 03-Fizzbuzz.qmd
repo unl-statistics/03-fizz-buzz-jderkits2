@@ -114,9 +114,14 @@ print(paste("For x = ", x, " my code produces ", y, sep = ""))
 import numpy as np
 x = 3
 y = np.nan
-# FizzBuzz code goes here
-
-
+if x % 3 == 0 and x % 5 == 0:
+    y = "FizzBuzz"
+elif x % 3 == 0:
+    y = "Fizz"
+elif x % 5 == 0:
+    y = "Buzz"
+else:
+    y = x
 
 print("For x = "+ str(x)+ " my code produces "+ str(y))
 ```
@@ -130,13 +135,26 @@ You can copy/paste code from previous chunks to make this chunk easier.
 
 ```{r vector-fizzbuzz-r, echo = T}
 xx <- 1:30
-yy <- rep(NA, times = 30)
+yy <- rep(NA, times = length(xx))
+#add the iterative piece loop xx
+#the bracket opens after the for,in and doesn't close till the very end otherwise it gives NA
+for (i in 1:length(xx)){
+  x<- xx[i]
 
-# FizzBuzz code goes here
-
+#the above goes through 1-30 then below looks at the conditions
+if (x %% 3 == 0 && x %% 5 == 0) {
+  yy[i]<-"FizzBuzz"
+} else if (x %% 3 == 0) {
+  yy[i]<-"Fizz"
+} else if (x %% 5 == 0) {
+  yy[i]<-"Buzz"
+} else {
+  yy[i]<-as.character(x) #convert the number to characters
+}
+}
 
 # Printing the results in a data frame
-res <- cbind(x = xx, result = yy)
+res <- cbind(x = as.character(xx), result = yy)
 res
 ```
 
