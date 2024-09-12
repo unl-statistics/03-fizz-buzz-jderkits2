@@ -388,56 +388,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">31</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> [np.nan]<span class="op">*</span><span class="bu">len</span>(xx)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#reiterate through the numbers </span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xx)):</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span>xx[i]</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    yy[i]<span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    yy[i]<span class="op">=</span> <span class="st">"Fizz"</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">elif</span> x <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    yy[i]<span class="op">=</span> <span class="st">"Buzz"</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    yy[i]<span class="op">=</span> <span class="bu">str</span>(x) <span class="co">#convert the number to a string/word</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the results in a data frame</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate an array of numbers from 1 to 30</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">31</span>))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(xx)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the FizzBuzz logic</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xx)):</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> xx[i]</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        yy[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        yy[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> x <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        yy[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        yy[i] <span class="op">=</span> <span class="bu">str</span>(x)  <span class="co"># Convert the number to a string/word</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with the results</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the index to start at 1</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>res.index <span class="op">=</span> res.index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to see the results</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     x    result
-0    1         1
-1    2         2
-2    3      Fizz
-3    4         4
-4    5      Buzz
-5    6      Fizz
-6    7         7
-7    8         8
-8    9      Fizz
-9   10      Buzz
-10  11        11
-11  12      Fizz
-12  13        13
-13  14        14
-14  15  FizzBuzz
-15  16        16
-16  17        17
-17  18      Fizz
-18  19        19
-19  20      Buzz
-20  21      Fizz
-21  22        22
-22  23        23
-23  24      Fizz
-24  25      Buzz
-25  26        26
-26  27      Fizz
-27  28        28
-28  29        29
-29  30  FizzBuzz</code></pre>
+1    1         1
+2    2         2
+3    3      Fizz
+4    4         4
+5    5      Buzz
+6    6      Fizz
+7    7         7
+8    8         8
+9    9      Fizz
+10  10      Buzz
+11  11        11
+12  12      Fizz
+13  13        13
+14  14        14
+15  15  FizzBuzz
+16  16        16
+17  17        17
+18  18      Fizz
+19  19        19
+20  20      Buzz
+21  21      Fizz
+22  22        22
+23  23        23
+24  24      Fizz
+25  25      Buzz
+26  26        26
+27  27      Fizz
+28  28        28
+29  29        29
+30  30  FizzBuzz</code></pre>
 </div>
 </div>
 </section>
@@ -459,61 +467,66 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      x    result
- [1,] "49" "49"  
- [2,] "31" "31"  
- [3,] "68" "68"  
- [4,] "7"  "7"   
- [5,] "36" "Fizz"
- [6,] "10" "Buzz"
- [7,] "17" "17"  
- [8,] "93" "Fizz"
- [9,] "55" "Buzz"
-[10,] "56" "56"  </code></pre>
+<pre><code>      x    result    
+ [1,] "74" "74"      
+ [2,] "25" "Buzz"    
+ [3,] "5"  "Buzz"    
+ [4,] "35" "Buzz"    
+ [5,] "58" "58"      
+ [6,] "22" "22"      
+ [7,] "40" "Buzz"    
+ [8,] "88" "88"      
+ [9,] "15" "FizzBuzz"
+[10,] "61" "61"      </code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> choices</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co">#this is the 1-100 numbers</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), k <span class="op">=</span> <span class="dv">10</span>)) </span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random list of integers between 1 and 100</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">101</span>), k<span class="op">=</span><span class="dv">10</span>))</span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(x)  <span class="co"># Initialize result list with NaN values</span></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="bu">str</span>(x[i])  <span class="co"># Convert number to string if not divisible by 3 or 5</span></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the fizzbuzz function to the array xx</span></span>
-<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x<span class="op">=</span>xx)</span>
-<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with the results</span></span>
-<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to see the results</span></span>
-<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the fizzbuzz function</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(x)  <span class="co"># Initialize result list with NaN values</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="bu">str</span>(x[i])  <span class="co"># Convert number to string if not divisible by 3 or 5</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the fizzbuzz function to the array xx</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x<span class="op">=</span>xx)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with the results</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Adjust the index to start at 1</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>res.index <span class="op">=</span> res.index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to see the results</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x    result
-0  46        46
-1  28        28
-2  66      Fizz
-3  45  FizzBuzz
-4  66      Fizz
-5  14        14
-6  27      Fizz
-7  63      Fizz
-8  23        23
-9  51      Fizz</code></pre>
+<pre><code>     x    result
+1   82        82
+2   73        73
+3   96      Fizz
+4   78      Fizz
+5   21      Fizz
+6    4         4
+7   67        67
+8   39      Fizz
+9   60  FizzBuzz
+10  76        76</code></pre>
 </div>
 </div>
 </section>
@@ -541,17 +554,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
 <span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      x    result
- [1,] "14" "14"  
- [2,] "17" "17"  
- [3,] "11" "11"  
- [4,] "57" "Fizz"
- [5,] "16" "16"  
- [6,] "84" "Fizz"
- [7,] "69" "Fizz"
- [8,] "53" "53"  
- [9,] "4"  "4"   
-[10,] "96" "Fizz"</code></pre>
+<pre><code>      x    result    
+ [1,] "80" "Buzz"    
+ [2,] "34" "34"      
+ [3,] "96" "Fizz"    
+ [4,] "74" "74"      
+ [5,] "30" "FizzBuzz"
+ [6,] "77" "77"      
+ [7,] "50" "Buzz"    
+ [8,] "67" "67"      
+ [9,] "6"  "Fizz"    
+[10,] "92" "92"      </code></pre>
 </div>
 </div>
 <p>In Python, you can use a <a href="https://docs.python.org/3/tutorial/errors.html#handling-exceptions"><code>try:</code> statement with a <code>except:</code> clause</a>. This functions like an if-else statement, where if no error occurs, the except statement is never executed.</p>
@@ -587,47 +600,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="at">x =</span> xx, <span class="at">result =</span> yy)</span>
 <span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>      x    result
- [1,] "64" "64"  
- [2,] "97" "97"  
- [3,] "19" "19"  
- [4,] "7"  "7"   
- [5,] "12" "Fizz"
- [6,] "73" "73"  
- [7,] "20" "Buzz"
- [8,] "33" "Fizz"
- [9,] "61" "61"  
-[10,] "88" "88"  </code></pre>
+<pre><code>      x    result    
+ [1,] "85" "Buzz"    
+ [2,] "50" "Buzz"    
+ [3,] "78" "Fizz"    
+ [4,] "58" "58"      
+ [5,] "39" "Fizz"    
+ [6,] "42" "Fizz"    
+ [7,] "45" "FizzBuzz"
+ [8,] "84" "Fizz"    
+ [9,] "67" "67"      
+[10,] "68" "68"      </code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> random <span class="im">import</span> choices</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">100</span>), k <span class="op">=</span> <span class="dv">10</span>)) <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  y <span class="op">=</span> [np.nan]<span class="op">*</span><span class="bu">len</span>(x) <span class="co"># this just defines something to return</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Your code goes here</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> y</span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x <span class="op">=</span> xx)</span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Printing the results in a data frame</span></span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>res</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#this is the 1-100 numbers</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.array(choices(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">101</span>), k <span class="op">=</span> <span class="dv">10</span>)) </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fizzbuzz(x):</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if x is a NumPy array</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>   <span class="co"># if not isinstance(x, np.ndarray):</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">#    raise TypeError("Input must be a NumPy array.")</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [np.nan] <span class="op">*</span> <span class="bu">len</span>(x)  </span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(x)):</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span> <span class="kw">and</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"FizzBuzz"</span></span>
+<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">3</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb24-18"><a href="#cb24-18" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Fizz"</span></span>
+<span id="cb24-19"><a href="#cb24-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">elif</span> x[i] <span class="op">%</span> <span class="dv">5</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb24-20"><a href="#cb24-20" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="st">"Buzz"</span></span>
+<span id="cb24-21"><a href="#cb24-21" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb24-22"><a href="#cb24-22" aria-hidden="true" tabindex="-1"></a>            y[i] <span class="op">=</span> <span class="bu">str</span>(x[i])  <span class="co"># Convert number to string if not divisible by 3 or 5</span></span>
+<span id="cb24-23"><a href="#cb24-23" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-24"><a href="#cb24-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> y</span>
+<span id="cb24-25"><a href="#cb24-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the fizzbuzz function to the array xx</span></span>
+<span id="cb24-26"><a href="#cb24-26" aria-hidden="true" tabindex="-1"></a>yy <span class="op">=</span> fizzbuzz(x<span class="op">=</span>xx)</span>
+<span id="cb24-27"><a href="#cb24-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-28"><a href="#cb24-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a DataFrame with the results</span></span>
+<span id="cb24-29"><a href="#cb24-29" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame({<span class="st">"x"</span>: xx, <span class="st">"result"</span>: yy})</span>
+<span id="cb24-30"><a href="#cb24-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-31"><a href="#cb24-31" aria-hidden="true" tabindex="-1"></a><span class="co">#start at 1</span></span>
+<span id="cb24-32"><a href="#cb24-32" aria-hidden="true" tabindex="-1"></a>res.index <span class="op">=</span> res.index <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb24-33"><a href="#cb24-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-34"><a href="#cb24-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the DataFrame to see the results</span></span>
+<span id="cb24-35"><a href="#cb24-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    x  result
-0  69     NaN
-1  95     NaN
-2  44     NaN
-3  49     NaN
-4  30     NaN
-5   5     NaN
-6   1     NaN
-7  94     NaN
-8  84     NaN
-9  88     NaN</code></pre>
+<pre><code>     x    result
+1   87      Fizz
+2   10      Buzz
+3   91        91
+4   40      Buzz
+5   21      Fizz
+6   60  FizzBuzz
+7   91        91
+8   72      Fizz
+9   57      Fizz
+10  18      Fizz</code></pre>
 </div>
 </div>
 </section>

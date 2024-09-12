@@ -160,24 +160,33 @@ res
 
 ```{python vector-fizzbuzz-py, echo = T}
 import pandas as pd
-xx = np.array(range(1,31))
-yy = [np.nan]*len(xx)
+import numpy as np
 
-#reiterate through the numbers 
+# Generate an array of numbers from 1 to 30
+xx = np.array(range(1, 31))
+yy = [np.nan] * len(xx)
+
+# Apply the FizzBuzz logic
 for i in range(len(xx)):
-  x=xx[i]
-  if x % 3 == 0 and x % 5 == 0:
-    yy[i]= "FizzBuzz"
-  elif x % 3 == 0:
-    yy[i]= "Fizz"
-  elif x % 5 == 0:
-    yy[i]= "Buzz"
-  else:
-    yy[i]= str(x) #convert the number to a string/word
-    
-# Printing the results in a data frame
+    x = xx[i]
+    if x % 3 == 0 and x % 5 == 0:
+        yy[i] = "FizzBuzz"
+    elif x % 3 == 0:
+        yy[i] = "Fizz"
+    elif x % 5 == 0:
+        yy[i] = "Buzz"
+    else:
+        yy[i] = str(x)  # Convert the number to a string/word
+
+# Create a DataFrame with the results
 res = pd.DataFrame({"x": xx, "result": yy})
-res
+
+# Adjust the index to start at 1
+res.index = res.index + 1
+
+# Print the DataFrame to see the results
+print(res)
+
 ```
 
 # Functions and FizzBuzz
@@ -204,10 +213,11 @@ res
 import pandas as pd
 from random import choices
 import numpy as np
-#this is the 1-100 numbers
-xx = np.array(choices(range(1, 101), k = 10)) 
 
+# Generate a random list of integers between 1 and 100
+xx = np.array(choices(range(1, 101), k=10))
 
+# Define the fizzbuzz function
 def fizzbuzz(x):
     y = [np.nan] * len(x)  # Initialize result list with NaN values
     
@@ -222,14 +232,19 @@ def fizzbuzz(x):
             y[i] = str(x[i])  # Convert number to string if not divisible by 3 or 5
     
     return y
+
 # Apply the fizzbuzz function to the array xx
 yy = fizzbuzz(x=xx)
 
 # Create a DataFrame with the results
 res = pd.DataFrame({"x": xx, "result": yy})
 
+# Adjust the index to start at 1
+res.index = res.index + 1
+
 # Print the DataFrame to see the results
 print(res)
+
 ```
 
 # Defensive Programming
@@ -285,9 +300,9 @@ fizzbuzz <- function(x) {
 }
 
 # Check if x is character!! The user will get an error message as the output
-if (!is.character(x)) {
-    stop("Error: Input must be numeric.")
-}
+#if (!is.character(x)) {
+#    stop("Error: Input must be numeric.")
+#}
 #the fizzbuzz function is applied to the vector xx
 yy <- fizzbuzz(x = xx)
 
@@ -299,17 +314,37 @@ res
 ```{python function-error-fizzbuzz-py}
 import pandas as pd
 from random import choices
-xx = np.array(choices(range(100), k = 10)) + 1
-
+import numpy as np
+#this is the 1-100 numbers
+xx = np.array(choices(range(1,101), k = 10)) 
 
 def fizzbuzz(x):
-  y = [np.nan]*len(x) # this just defines something to return
-  # Your code goes here
-  return y
+  # Check if x is a NumPy array
+   # if not isinstance(x, np.ndarray):
+    #    raise TypeError("Input must be a NumPy array.")
+  
+    y = [np.nan] * len(x)  
+    
+    for i in range(len(x)):
+        if x[i] % 3 == 0 and x[i] % 5 == 0:
+            y[i] = "FizzBuzz"
+        elif x[i] % 3 == 0:
+            y[i] = "Fizz"
+        elif x[i] % 5 == 0:
+            y[i] = "Buzz"
+        else:
+            y[i] = str(x[i])  # Convert number to string if not divisible by 3 or 5
+    
+    return y
+# Apply the fizzbuzz function to the array xx
+yy = fizzbuzz(x=xx)
 
-yy = fizzbuzz(x = xx)
-
-# Printing the results in a data frame
+# Create a DataFrame with the results
 res = pd.DataFrame({"x": xx, "result": yy})
-res
+
+#start at 1
+res.index = res.index + 1
+
+# Print the DataFrame to see the results
+print(res)
 ```
