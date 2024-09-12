@@ -278,7 +278,7 @@ xx <- sample(1:100, 10) # get a random xx
 yy <- rep(NA, 10)
 
 fizzbuzz <- function(x) {
-  # Your code goes here
+  
 }
 
 yy <- fizzbuzz(x = xx)
