@@ -203,19 +203,33 @@ res
 ```{python function-fizzbuzz-py}
 import pandas as pd
 from random import choices
-xx = np.array(choices(range(100), k = 10)) + 1
+import numpy as np
+#this is the 1-100 numbers
+xx = np.array(choices(range(1, 101), k = 10)) 
 
 
 def fizzbuzz(x):
-  y = [np.nan]*len(x) # this just defines something to return
-  # Your code goes here
-  return y
+    y = [np.nan] * len(x)  # Initialize result list with NaN values
+    
+    for i in range(len(x)):
+        if x[i] % 3 == 0 and x[i] % 5 == 0:
+            y[i] = "FizzBuzz"
+        elif x[i] % 3 == 0:
+            y[i] = "Fizz"
+        elif x[i] % 5 == 0:
+            y[i] = "Buzz"
+        else:
+            y[i] = str(x[i])  # Convert number to string if not divisible by 3 or 5
+    
+    return y
+# Apply the fizzbuzz function to the array xx
+yy = fizzbuzz(x=xx)
 
-yy = fizzbuzz(x = xx)
-
-# Printing the results in a data frame
+# Create a DataFrame with the results
 res = pd.DataFrame({"x": xx, "result": yy})
-res
+
+# Print the DataFrame to see the results
+print(res)
 ```
 
 # Defensive Programming
@@ -225,7 +239,25 @@ You cannot always assume that the person using your functions knows what they're
 In R, you can use the function [`stopifnot()` to halt function execution if there is an error](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/stopifnot); this will give you a basic error message. 
 
 ```{r stopifnotdemo, error = T}
-stopifnot(2 > 3)
+xx <- sample(1:100, 10) # Get a random xx
+yy <- rep(NA, 10)
+
+# This is the function with the logic- is it numeric? if not don't go on...
+fizzbuzz <- function(x) {
+  stopifnot(is.numeric(x))  # Check if x is numeric?
+  result <- ifelse(x %% 3 == 0 & x %% 5 == 0, "FizzBuzz", 
+                   ifelse(x %% 3 == 0, "Fizz", 
+                          ifelse(x %% 5 == 0, "Buzz", as.character(x))))
+  return(result)
+}
+
+# Apply the fizzbuzz function to the vector xx
+yy <- fizzbuzz(x = xx)
+
+# Print the results in a data frame
+res <- cbind(x = xx, result = yy)
+print(res)
+
 ```
 
 In Python, you can use a [`try:` statement with a `except:` clause](https://docs.python.org/3/tutorial/errors.html#handling-exceptions). This functions like an if-else statement, where if no error occurs, the except statement is never executed.
