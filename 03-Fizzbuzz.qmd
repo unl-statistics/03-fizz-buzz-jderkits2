@@ -288,26 +288,28 @@ except ValueError:
 See more examples of this in the [Input Validation](https://srvanderplas.github.io/stat-computing-r-python/part-gen-prog/05-functions.html#input-validation) section of the textbook.
 
 
-```{r function-error-fizzbuzz-r}
+```{r function-error-fizzbuzz-r, error=TRUE}
+library (dplyr)
 xx <- sample(1:100, 10) # get a random xx
-yy <- rep(NA, 10)
+#xx <- sample ("hello")
 
 
 ##This is the function line 191, line 192 in the logic vector part
 fizzbuzz <- function(x) {
-    result <- ifelse(x %% 3 == 0 & x %% 5 == 0, "FizzBuzz", ifelse(x %% 3 == 0, "Fizz", ifelse(x %% 5 == 0, "Buzz", as.character(x))))
+  # Check if x is character!! The user will get an error message as the output
+  if (!is.numeric (x)) {
+    stop("Error: Input must be numeric.")
+  }
+  
+#the fizzbuzz function is applied to the vector xx
+  result <- if_else(x %% 3 == 0 & x %% 5 == 0, "FizzBuzz", 
+                   if_else(x %% 3 == 0, "Fizz", 
+                          if_else(x %% 5 == 0, "Buzz", as.character(x))))
   return(result)
 }
 
-# Check if x is character!! The user will get an error message as the output
-#if (!is.character(x)) {
-#    stop("Error: Input must be numeric.")
-#}
-#the fizzbuzz function is applied to the vector xx
-yy <- fizzbuzz(x = xx)
-
 # Printing the results in a data frame
-res <- cbind(x = xx, result = yy)
+res <- cbind(x = xx, fizbuzz = fizzbuzz (xx))
 res
 ```
 
